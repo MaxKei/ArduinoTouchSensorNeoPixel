@@ -1,32 +1,28 @@
-# Prerequisites
-*.d
+# Made by Kei, Kraul, Mcnair
+#Educationional course: Interactive System and Design
+#ArduinoTouchSensorNeoPixel
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+#include "FastLED.h"
+#include <ADCTouchSensor.h>
+ADCTouchSensor touch0 = ADCTouchSensor(A0, -1);
+// How many leds in your strip?
+#define NUM_LEDS 12
+#define DATA_PIN 3
+boolean lastState = false;
+// Define the array of leds
+CRGB leds[NUM_LEDS];
+void setup() {
+FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
+//pinMode(4, INPUT_PULLUP);
+//Serial.begin(9600);
+Serial.begin(9600);
+touch0.begin();
+}
+void intensify(){
+for(int x=0;x<255;x+=12){
+//Serial.print("hej");
+delay(100);
+for (int i = 0; i<14 ;i++){
+leds[i]= CRGB(x,x,0);
+}
+FastLED.show();
